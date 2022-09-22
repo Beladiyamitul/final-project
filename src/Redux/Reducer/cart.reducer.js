@@ -14,7 +14,7 @@ export const initalstate = {
 
 export const CartReducer = (state = initalstate, action) => {
 
-    // console.log(action.type, action.payload);
+    console.log(action.type, action.payload, state.cart);
 
     switch (action.type) {
        
@@ -22,14 +22,14 @@ export const CartReducer = (state = initalstate, action) => {
             return {
                 ...state,
                 isLoading: false,
-                cart: action.payload,
+                cart: state.cart.concat(action.payload),
                 error: ""
             }
         case ActionType.GET_CART:
             return {
                 ...state,
                 isLoading: false,
-                cart: state.cart.concat(action.payload),
+                cart: action.payload,
                 error: ""
             }
 

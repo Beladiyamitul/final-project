@@ -1263,3 +1263,21 @@ p.single-des span {
   background: #ef4049;
   transition: 0.5s all;
 }
+
+.view-c-img img {
+  width: 50%;
+}
+
+.cart-v-box {
+  display: flex;
+}
+.view-c-img {
+  width: 20%;
+}
+.cart-item {
+  display: flex;
+}
+.input input[type="text"] {
+  width: 80px;
+  margin: 0 10px;
+}
