@@ -32,6 +32,44 @@ export const CartReducer = (state = initalstate, action) => {
                 cart: action.payload,
                 error: ""
             }
+        case ActionType.DELETE_CART:
+            return {
+                ...state,
+                isLoading: false,
+                cart: state.cart.filter((d , f) => d.id !== action.payload),
+                error: ""
+            }
+            case ActionType.INCREMENT :
+                return {
+                    ...state,
+                    cart : state.cart.map((r)=>{
+                        if (r.id === action.payload) {
+                            return{
+                                id : r.id ,
+                                quantity : r.quantity +1,
+                            }
+                        }
+                        else{
+                            return r;
+                         }
+                    }) 
+                
+                }
+            case ActionType.DECREMENT :
+                return {
+                    ...state,
+                    cart : state.cart.map((r)=>{
+                        if (r.id === action.payload) {
+                            return{
+                                id : r.id ,
+                                quantity : r.quantity -1,
+                            }
+                        }
+                        else{
+                            return r;
+                         }
+                    }) 
+                }   
 
         default:
             return state

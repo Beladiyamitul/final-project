@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../Redux/Acton/product.action';
+import { decrement, deletecart, increment } from '../../Redux/Acton/cart.action';
+import {  getProduct } from '../../Redux/Acton/product.action';
+import CloseIcon from '@mui/icons-material/Close';
 
 function CartDetails(props) {
     const [cartData, setCartData] = useState([])
@@ -13,6 +15,11 @@ function CartDetails(props) {
     console.log(CartProData, productdata);
 
 
+    const handleDelete = (id) => {
+        dispatch(deletecart(id))
+    }
+
+
 
     const cartDataFun = () => {
         const Procart = [];
@@ -20,8 +27,11 @@ function CartDetails(props) {
         productdata.map((j) => {
             CartProData.map((s) => {
                 if (j.id === s.id) {
-                    console.log("llllll");
-                    Procart.push(j)
+                    const quacount = {
+                        ...j,
+                        quantity: s.quantity
+                    }
+                    Procart.push(quacount)
                 }
             })
         })
@@ -29,6 +39,17 @@ function CartDetails(props) {
         setCartData(Procart)
 
     }
+
+
+    const handleincrement = (id) =>{
+        dispatch(increment(id))
+    }
+
+
+    const handledecrement = (id) => {
+        dispatch(decrement(id))
+    }
+
 
     useEffect(() => {
         dispatch(getProduct());
@@ -41,50 +62,70 @@ function CartDetails(props) {
 
     return (
         <>
-                <div className='cart-box'>
-                    <div className='container'>
-                        <div className='row'>
-                          <div className='col-8'>
-                                <div className='view-box'>
-                                        {
-                                            cartData.map((k) =>(
-                                                <>
-                                            <div className='cart-v-box'>
-                                                    <div className='view-c-img'>
-                                                            <img src={k.url} />
-                                                    </div>
-                                                    <div className='view-details'>
-                                                        <h5>{k.product_name}</h5>
-                                                        <p><strong>Price :</strong> {k.product_price}</p>
-                                                        <div className='cart-item'>
-                                                            <button>-</button>
-                                                            <div className='input'>
-                                                                <input type="text" />
-                                                            </div>
-                                                            <button>+</button>
+            <div className='cart-box'>
+                <div className='container'>
+                    <div className='row'>
+                      
+                                    <div>
+                                        <table>
+                                            <thead>
+                                                <tr className='text-red-600'>
+                                                    <th>Images</th>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                    <th>Remove</th>
+                                                </tr>
+                                            </thead>
+                                            {
+                                               cartData.map((k)  => (
 
-                                                        </div>
-                                                    </div>
-                                                    <div className='deletItem'>
-                                                     REMOVE
-                                                    </div>
-                                            </div>
-                                                
-                                                </>
-                                            ))
-                                        }
-                                    
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="">
+                                                                    <img src={k.url} alt='' width={70} />
+                                                                </a>
+                                                            </td>
+                                                            <td className="">
+                                                                <a href="">{k.product_name}</a>
+                                                            </td>
+                                                                <td className="">
+                                                                    <span className="">{k.product_price}</span>
+                                                                </td>
+                                                            <td className="">
+                                                                <div className="text-center">
+                                                                    <div className='quantity-box'>
+                                                                        <button onClick={() => handleincrement(k.id)} className='border-2 p-2'>+</button>
+                                                                        <p className='border-2 p-2'>{k.quantity}</p>
+                                                                        <button disabled={k.quantity === 1 && true} onClick={() => handledecrement(k.id)} className='border-2 p-2'>-</button>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className="">
+                                                                <span className="">{k.product_price * k.quantity}</span>
+                                                            </td>
+                                                            <td className="">
+                                                                <a href=""  onClick={() => handleDelete(k.id)}  ><CloseIcon /></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                ))
+                                            }
+                                        </table>
                                     </div>
-                          </div>
-                          <div className='col-4'>
 
-                          </div>
-                           
-                        </div>
+
+                        {/* <div className='col-4'>
+
+                        </div> */}
+
                     </div>
-
                 </div>
-            
+
+            </div>
+
 
         </>
 

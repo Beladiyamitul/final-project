@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../Redux/Acton/product.action';
 import { useHistory } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { AddcartAction } from '../../Redux/Acton/cart.action';
 // import allimg from "../../../public/images/1f6cd.png"
 
 
@@ -35,6 +36,21 @@ function Product(props) {
     const [data, setData] = useState([]);
     const [search , setSearch] = useState("All");
     const [filterDataPro , setFilterDataPro] = useState([]);
+
+
+    const [quantity, setQuantity] = useState(1)
+    const history = useHistory()
+
+    const handlecart = (g) => {
+        const Datacart = {
+            id: g,
+            quantity: quantity
+        }
+        dispatch(AddcartAction(Datacart))
+        history.push("/cart_detail")
+    }
+
+
 
     console.log(search);
     console.log(filterDataPro);
@@ -150,7 +166,7 @@ useEffect(() =>{
                                                 <div className="box">
                                                     <div className="option_container">
                                                         <div className="options">
-                                                            <button><a href className="option1">
+                                                            <button><a href className="option1" onClick={() => handlecart(e.id)}>
                                                                <ShoppingCartIcon/> Add To Cart
                                                             </a></button>
                                                             <button> <a onClick={() => {handledetail(e)}}  className="option2">
