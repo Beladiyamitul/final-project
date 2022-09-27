@@ -267,7 +267,7 @@ function Product_admin(props) {
                 <div>
 
                     <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Empoyee Data</DialogTitle>
+                        <DialogTitle>Add Product</DialogTitle>
                         <Formik value={formik}>
                             <Form key={formik} onSubmit={formik.handleSubmit}>
                                 <DialogContent>

@@ -1284,7 +1284,7 @@ p.single-des span {
 
 table tr th , td  {
   border: 1px solid #000;
-  padding: 40px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -1301,4 +1301,25 @@ table tr th , td  {
 
 .quantity-box button {
   padding: 5px 15px !important;
+}
+.side-total {
+  padding: 15px;
+  background: #fff;
+  height: 330px;
+  box-shadow: 0 0 6px -2px #818181;
+}
+.side-total .row {
+  padding: 10px 15px !important;
+}
+.side-total .row {
+  padding: 10px 15px !important;
+  justify-content: space-between;
+}
+.side-total .row p {
+  font-size: 17px;
+  color: #000;
+}
+.box.Add-button .options button a {
+  color: #fff;
+  font-weight: 500;
 }

@@ -19,6 +19,7 @@ function CartDetails(props) {
         dispatch(deletecart(id))
     }
 
+    console.log(CartProData ,productdata);
 
 
     const cartDataFun = () => {
@@ -45,6 +46,12 @@ function CartDetails(props) {
         dispatch(increment(id))
     }
 
+    let Totle;
+
+    // cartData.map((g) => {
+    //     console.log();
+    //     Totle = g.product_price * g.quantity;
+    // })
 
     const handledecrement = (id) => {
         dispatch(decrement(id))
@@ -65,7 +72,7 @@ function CartDetails(props) {
             <div className='cart-box'>
                 <div className='container'>
                     <div className='row'>
-                      
+                        <div className='col-9'>   
                                     <div>
                                         <table>
                                             <thead>
@@ -89,22 +96,22 @@ function CartDetails(props) {
                                                                 </a>
                                                             </td>
                                                             <td className="">
-                                                                <a href="">{k.product_name}</a>
+                                                                <a href="/product_detail">{k.product_name}</a>
                                                             </td>
                                                                 <td className="">
-                                                                    <span className="">{k.product_price}</span>
+                                                                    <span className="">₹{k.product_price}</span>
                                                                 </td>
                                                             <td className="">
                                                                 <div className="text-center">
                                                                     <div className='quantity-box'>
                                                                         <button onClick={() => handleincrement(k.id)} className='border-2 p-2'>+</button>
-                                                                        <p className='border-2 p-2'>{k.quantity}</p>
+                                                                        <p className='border-2 p-2'>{k.quantity}</p> 
                                                                         <button disabled={k.quantity === 1 && true} onClick={() => handledecrement(k.id)} className='border-2 p-2'>-</button>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td className="">
-                                                                <span className="">{k.product_price * k.quantity}</span>
+                                                                <span className="">₹{k.product_price * k.quantity}</span>
                                                             </td>
                                                             <td className="">
                                                                 <a href=""  onClick={() => handleDelete(k.id)}  ><CloseIcon /></a>
@@ -114,13 +121,41 @@ function CartDetails(props) {
                                                 ))
                                             }
                                         </table>
+                                        <div className="box Add-button">
+                                        <div className="option_container">
+                                            <div className="options">
+                                                <button><a href="/products" className="option1"> More Items</a></button>
+                                              
+                                            </div>
+                                        </div>
+
                                     </div>
+                                    </div>
+                        </div>  
 
+                         <div className='col-3 side-total'>
+                            <div className='total-box'>
+                                 <h6>PRICE DETAILS</h6>
+                            </div>
+                            <div className='row'>
+                                <p className='main-tit-box'>Price ({cartData.length} items)</p>
+                                <p className='sub-tit-box'>Free</p>
+                            </div>
+                            <div className='row'>
+                                <p className='main-tit-box'>Discount</p>
+                                <p className='sub-tit-box'>Free</p>
+                            </div>
+                            <div className='row'>
+                                <p className='main-tit-box'>Delivery Charges</p>
+                                <p className='sub-tit-box'>Free</p>
+                            </div>
+                            <div className='row'>
+                                <h6>Total Price</h6>
+                                <h6>Total</h6>
+                            </div>
 
-                        {/* <div className='col-4'>
-
-                        </div> */}
-
+                        </div>
+                    
                     </div>
                 </div>
 
