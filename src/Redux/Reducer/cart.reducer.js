@@ -50,7 +50,7 @@ export const CartReducer = (state = initalstate, action) => {
                             }
                         }
                         else{
-                            return r;
+                            return r;   
                          }
                     }) 
                 

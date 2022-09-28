@@ -46,12 +46,15 @@ function CartDetails(props) {
         dispatch(increment(id))
     }
 
-    let Totle;
+    // const totalamount = 0;
+    // const 
 
-    // cartData.map((g) => {
-    //     console.log();
-    //     Totle = g.product_price * g.quantity;
-    // })
+    let Total;
+
+    cartData.map((g) => {
+        Total = g.product_price * g.quantity;
+        console.log("Total" ,Total);
+    })
 
     const handledecrement = (id) => {
         dispatch(decrement(id))
