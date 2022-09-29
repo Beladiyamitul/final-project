@@ -1305,21 +1305,48 @@ table tr th , td  {
 .side-total {
   padding: 15px;
   background: #fff;
-  height: 330px;
+  height: 350px;
   box-shadow: 0 0 6px -2px #818181;
 }
 .side-total .row {
   padding: 10px 15px !important;
 }
 .side-total .row {
-  padding: 10px 15px !important;
+  padding: 20px !important;
   justify-content: space-between;
 }
 .side-total .row p {
   font-size: 17px;
   color: #000;
+  margin: 0;
 }
 .box.Add-button .options button a {
   color: #fff;
   font-weight: 500;
+}
+.cart-box a {
+  color: #000;
+}
+.final-total h6 {
+  font-size: 20px;
+}
+.side-total div {
+  border-bottom: 1px solid #ccc;
+}
+p.save-price {
+  font-size: 15px !important;
+}
+.row.save-line {
+  border: none;
+}
+span.save-green {
+  color: #197e00;
+  font-weight: 700;
+}
+.row.main-tit {
+  padding: 25px 0;
+  box-shadow: 0 0 6px -2px #818181;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  text-align: center;
 }

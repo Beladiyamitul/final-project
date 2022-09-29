@@ -62,6 +62,7 @@ export const CartReducer = (state = initalstate, action) => {
                         if (r.id === action.payload) {
                             return{
                                 id : r.id ,
+                                
                                 quantity : r.quantity -1,
                             }
                         }

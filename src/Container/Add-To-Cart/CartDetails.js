@@ -46,15 +46,22 @@ function CartDetails(props) {
         dispatch(increment(id))
     }
 
-    // const totalamount = 0;
-    // const 
-
-    let Total;
+   
+ 
+    let total;
+    let totalamount = 0;
 
     cartData.map((g) => {
-        Total = g.product_price * g.quantity;
-        console.log("Total" ,Total);
+        total = g.product_price * g.quantity;
+        totalamount = totalamount + total;
     })
+    
+ 
+    const discoutnt = Math.round(totalamount * 0.08);
+    const finaltotal = totalamount - discoutnt ;
+
+
+
 
     const handledecrement = (id) => {
         dispatch(decrement(id))
@@ -74,6 +81,14 @@ function CartDetails(props) {
         <>
             <div className='cart-box'>
                 <div className='container'>
+                    <div className='row main-tit'>
+                         <div className='col-12'>
+                         <div className='Add-main-title'>
+                            <h3>Add To Cart Items</h3>
+                        </div>
+                         </div>
+                        
+                    </div>
                     <div className='row'>
                         <div className='col-9'>   
                                     <div>
@@ -127,7 +142,7 @@ function CartDetails(props) {
                                         <div className="box Add-button">
                                         <div className="option_container">
                                             <div className="options">
-                                                <button><a href="/products" className="option1"> More Items</a></button>
+                                                <button><a href="/products" className="option1"> Continue Shopping</a></button>
                                               
                                             </div>
                                         </div>
@@ -137,24 +152,24 @@ function CartDetails(props) {
                         </div>  
 
                          <div className='col-3 side-total'>
-                            <div className='total-box'>
-                                 <h6>PRICE DETAILS</h6>
+                            <div className='row total-box'>
+                                    <h6>PRICE DETAILS</h6>
                             </div>
                             <div className='row'>
                                 <p className='main-tit-box'>Price ({cartData.length} items)</p>
-                                <p className='sub-tit-box'>Free</p>
+                                <p className='sub-tit-box'>₹{totalamount}</p>
                             </div>
                             <div className='row'>
                                 <p className='main-tit-box'>Discount</p>
-                                <p className='sub-tit-box'>Free</p>
+                                <p className='sub-tit-box'>₹{discoutnt}</p>
                             </div>
-                            <div className='row'>
-                                <p className='main-tit-box'>Delivery Charges</p>
-                                <p className='sub-tit-box'>Free</p>
-                            </div>
-                            <div className='row'>
+                     
+                            <div className='row final-total'>
                                 <h6>Total Price</h6>
-                                <h6>Total</h6>
+                                <h6>₹{finaltotal}</h6>
+                            </div>
+                            <div className='row save-line'>
+                                <p className='save-price'>You will save <span className='save-green'>₹{discoutnt}</span> on this order</p>
                             </div>
 
                         </div>
