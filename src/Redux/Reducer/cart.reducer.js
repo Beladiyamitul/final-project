@@ -14,15 +14,24 @@ export const initalstate = {
 
 export const CartReducer = (state = initalstate, action) => {
 
-    console.log(action.type, action.payload, state.cart);
+    console.log("action.type",action.type, action.payload, state.cart);
 
     switch (action.type) {
        
         case ActionType.ADD_CART:
+
+            const Cdata = state.cart.find((s) => s.id === action.payload.id)
+            if (Cdata) {
+                 Cdata.quantity++;
+            }
+            else{
+                state.cart.push(action.payload)
+            }
+
             return {
                 ...state,
                 isLoading: false,
-                cart: state.cart.concat(action.payload),
+                // cart: state.cart.concat(action.payload),
                 error: ""
             }
         case ActionType.GET_CART:

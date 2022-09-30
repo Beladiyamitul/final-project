@@ -26,8 +26,6 @@ function Contact(props) {
         },
         validationSchema: schema,
         onSubmit: (values , {resetForm}) => {
-            console.log(values);
-
             const  {
                 name,
                 email,
@@ -40,9 +38,6 @@ function Contact(props) {
                 email,
                 phone
             }
-
-            console.log(datacon);
-
             let condata = JSON.parse(localStorage.getItem("contactdata"));
             if (condata == null) {
                 localStorage.setItem("contactdata" , JSON.stringify([datacon]));
@@ -77,12 +72,7 @@ function Contact(props) {
         []
     )
 
-    // console.log(formik.errors.email);
-
     const { errors, values, handleChange, handleSubmit } = formik;
-
-    console.log(errors);
-
 
     const columns = [
         { field: 'id', headerName: 'Id', width: 70 },

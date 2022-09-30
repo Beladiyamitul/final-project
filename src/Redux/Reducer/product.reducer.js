@@ -14,8 +14,6 @@ export const initalstate = {
 
 export const productReducer = (state = initalstate, action) => {
 
-    // console.log(action.type, action.payload);
-
     switch (action.type) {
         case ActionType.LOADING_MEDICINE:
             return {

@@ -37,11 +37,6 @@ function Product_admin(props) {
     
     const catagorydata = doctors.doctor;
     const productdata = product.product;
-    console.log("catagorydata",catagorydata);
-
-    // console.log(product);
-// console.log(product.doctor);
-
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -56,7 +51,6 @@ function Product_admin(props) {
 
 
     const handleClickEditOpen = (params) => {
-        console.log(params.row);
         setOpen(true);
 
         formik.setValues({
@@ -98,9 +92,6 @@ function Product_admin(props) {
             if (update) {
                 handleEdit(values)
             } else {
-
-                console.log(values);
-
                 //   alert(JSON.stringify(values, null, 2));
                 // const {
                 //     product_name,
@@ -117,8 +108,6 @@ function Product_admin(props) {
                 // }
 
                 // let newdata = JSON.parse(localStorage.getItem("doctor"));
-                // console.log(newdata);
-
                 // if (newdata == null) {
                 //     localStorage.setItem('doctor', JSON.stringify([docdata]));
                 // } else {
@@ -127,14 +116,10 @@ function Product_admin(props) {
                 // }
 
 
-                // console.log(values);
-
-
                 dispatch(addProductdata(values))
 
                 handleClose();
                 getData();
-                // console.log(data);
                 resetForm();
             }
 
@@ -145,11 +130,8 @@ function Product_admin(props) {
 
 
     const handleEdit = (values) => {
-        console.log(values)
 
         // let eData = JSON.parse(localStorage.getItem("doctor"));
-        // console.log(eData);
-
         // let editData = eData.map((u) => {
         //     if (u.id == eid) {
         //         return(
@@ -180,9 +162,6 @@ function Product_admin(props) {
         // }
         // setDatadoc(doctor.doctors);
     }
-
-
-
     useEffect(
         () => {
             dispatch(getdocdata())
@@ -213,7 +192,6 @@ function Product_admin(props) {
         { field: 'product_list', headerName: 'Product Type', width: 130,
         renderCell: (params) => (
             catagorydata.map((x) => {
-                // console.log(x.id, params.formattedValue);
                 if(x.id === params.formattedValue){
                     return <div>{x.catagory_name}</div>
                 }

@@ -21,9 +21,7 @@ function Product(props) {
     
     const catagory = useSelector(state => state.doctors);
     const product = useSelector(state => state.product);
-    
-    // console.log(catagory.doctor);
-    // console.log(product.product);
+
     const productdata = product.product ;
 
     const dispatch = useDispatch()
@@ -51,12 +49,7 @@ function Product(props) {
     }
 
 
-
-    console.log(search);
-    console.log(filterDataPro);
-
     const handleCatagory = (c) => {
-        console.log(c);
         let filter = [];
         if (c === "All") {
             setFilterDataPro([]);
@@ -64,7 +57,6 @@ function Product(props) {
 
         productdata.filter((f) =>{
             if (c === f.product_list) {
-                console.log(f);
                 filter.push(f);
             }
         })
@@ -79,7 +71,6 @@ const historty = useHistory()
 
 const handledetail = (p) =>{
     historty.push('/product_detail', p)  
-console.log(p);
 }
 
 

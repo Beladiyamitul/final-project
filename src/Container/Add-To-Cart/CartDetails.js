@@ -12,14 +12,12 @@ function CartDetails(props) {
     const productdata = product.product;
     const CartProData = Cartproduct.cart;
 
-    console.log(CartProData, productdata);
+
 
 
     const handleDelete = (id) => {
         dispatch(deletecart(id))
     }
-
-    console.log(CartProData ,productdata);
 
 
     const cartDataFun = () => {

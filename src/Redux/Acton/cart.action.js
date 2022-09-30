@@ -2,7 +2,6 @@ import * as ActionType from '../ActionType'
 
 
 export const AddcartAction = (data) => (dispatch) =>{
-    console.log(data);
     dispatch ({type : ActionType.ADD_CART  , payload : data})
 }
 

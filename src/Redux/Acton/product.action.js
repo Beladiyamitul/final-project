@@ -8,7 +8,6 @@ import * as Actiontype from "../ActionType"
 
 
 export const getProduct = () => async (dispatch) => {
-  console.log();
   try {
     dispatch(loadingMedicin())
 
@@ -68,9 +67,6 @@ export const addProductdata = (data) => async (dispatch) => {
           })
     });
     
-
-
-    // console.log("Document written with ID: ", docRef.id);
     
     // postDoctordata(data)
     //     .then((data) => dispatch({ type: Actiontype.POST_DOCTOR, payload: data.data }))
@@ -114,7 +110,6 @@ export const deletCatagorydata = (data) => async (dispatch) => {
 
 
 export const updateCatagoryata = (data) => async (dispatch) => {
-  // console.log(data);
   try {
 
     dispatch(loadingMedicin())

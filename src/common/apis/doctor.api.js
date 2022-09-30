@@ -14,6 +14,5 @@ export const deleteDoctor= (id) =>{
 }
 
 export const updateDoctor = (data) =>{
-    console.log(data);
     return putRequest('doctors/', data)
 }

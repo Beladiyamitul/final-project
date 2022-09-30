@@ -41,7 +41,7 @@ function Catagories_admin(props) {
     
     const catagories_data = catagory.doctor ;
 
-    // console.log(catagory);
+  
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -56,7 +56,7 @@ function Catagories_admin(props) {
 
 
     const handleClickEditOpen = (params) => {
-        console.log(params.row);
+  
         setOpen(true);
 
         formik.setValues({
@@ -97,7 +97,7 @@ function Catagories_admin(props) {
                 handleEdit(values)
             } else {
 
-                console.log(values);
+     
 
                 //   alert(JSON.stringify(values, null, 2));
                 // const {
@@ -115,8 +115,7 @@ function Catagories_admin(props) {
                 // }
 
                 // let newdata = JSON.parse(localStorage.getItem("doctor"));
-                // console.log(newdata);
-
+               
                 // if (newdata == null) {
                 //     localStorage.setItem('doctor', JSON.stringify([docdata]));
                 // } else {
@@ -125,14 +124,13 @@ function Catagories_admin(props) {
                 // }
 
 
-                // console.log(values);
 
 
                 dispatch(addDoctordata(values))
 
                 handleClose();
                 getData();
-                // console.log(data);
+          
                 resetForm();
             }
 
@@ -143,11 +141,7 @@ function Catagories_admin(props) {
 
 
     const handleEdit = (values) => {
-        console.log(values)
-
-        // let eData = JSON.parse(localStorage.getItem("doctor"));
-        // console.log(eData);
-
+        // let eData = JSON.parse(localStorage.getItem("doctor"));      
         // let editData = eData.map((u) => {
         //     if (u.id == eid) {
         //         return(
