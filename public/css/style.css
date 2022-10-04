@@ -1350,3 +1350,12 @@ span.save-green {
   margin-left: 0px;
   text-align: center;
 }
+.place-btn {
+  border: none !important;
+}
+.btn-plceorder {
+  border-bottom: none !important;
+}
+form input{
+  text-transform: inherit;
+}

@@ -28,6 +28,10 @@ export const GET_CART = "GET_CART"
 export const DELETE_CART = "DELETE_CART"
 
 
+export const GET_ORDER = "GET_ORDER"
+
+export const POST_ORDER = "POST_ORDER"
+
 
 
 
