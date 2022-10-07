@@ -234,7 +234,7 @@ function CartDetails(props) {
                                             cartData.map((k) => (
 
                                                 <tbody>
-                                                    <tr>
+                                                    <tr>    
                                                         <td>
                                                             <a href="">
                                                                 <img src={k.url} alt='' width={70} />

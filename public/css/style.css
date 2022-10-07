@@ -1359,3 +1359,6 @@ span.save-green {
 form input{
   text-transform: inherit;
 }
+.order-view-table {
+  margin: 50px 0;
+}
