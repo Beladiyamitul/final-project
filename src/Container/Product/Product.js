@@ -94,7 +94,7 @@ useEffect(() =>{
                     <div className="row">
                         <div className="col-md-12">
                             <div className="full">
-                                <h3>Product Grid</h3>
+                                <h3>Product </h3>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useHistory } from 'react-router-dom';
+import { AddcartAction } from '../../Redux/Acton/cart.action';
+import { getdocdata } from '../../Redux/Acton/doctor.action';
+import { getProduct } from '../../Redux/Acton/product.action';
 
 function Home(props) {
+
+  const catagory = useSelector(state => state.doctors);
+  const product = useSelector(state => state.product);
+  const [filterDataPro , setFilterDataPro] = useState([]);
+
+  const dispatch = useDispatch()
+
+
+  const productdata = product.product ;
+  
+
+  const [quantity, setQuantity] = useState(1)
+  const history = useHistory()
+
+  const handlecart = (g) => {
+    const Datacart = {
+        id: g,
+        quantity: quantity
+    }
+    dispatch(AddcartAction(Datacart))
+    history.push("/cart_detail")
+}
+
+
+const handleCatagory = (c) => {
+    let filter = [];
+    if (c === "All") {
+        setFilterDataPro([]);
+    }
+
+    productdata.filter((f) =>{
+        if (c === f.product_list) {
+            filter.push(f);
+        }
+    })
+    setFilterDataPro(filter);
+};
+
+const filtercat = filterDataPro.length > 0 ? filterDataPro : productdata;
+
+
+const historty = useHistory()
+
+
+const handledetail = (p) =>{
+historty.push('/product_detail', p)  
+}
+
+
+
+useEffect(() =>{
+dispatch(getdocdata());
+dispatch(getProduct())
+
+},[])
+
+
     return (
       <div>
   <section className="slider_section ">
@@ -343,6 +406,60 @@ function Home(props) {
     </div>
   </section>
   {/* end why section */}
+  
+  {/* product section */}
+  <section className="product_section layout_padding">
+    <div className="container">
+      <div className="heading_container heading_center">
+        <h2>
+          Our <span>products</span>
+        </h2>
+      </div>
+      <div className="row">
+                     
+                                    {
+                                        filtercat.map((e) =>(
+                                            
+                                 
+
+                                            <div className="col-sm-6 col-md-4 col-lg-3">
+                                                <div className="box">
+                                                    <div className="option_container">
+                                                        <div className="options">
+                                                            <button><a href className="option1" onClick={() => handlecart(e.id)}>
+                                                               <ShoppingCartIcon/> Add To Cart
+                                                            </a></button>
+                                                            <button> <a onClick={() => {handledetail(e)}}  className="option2">
+                                                               View
+                                                            </a></button>
+                                                        </div>
+                                                    </div>
+                                                    <div  className="img-box">
+                                                            <img  src={e.url}/>
+                                                        </div>
+                                                        <div className="detail-box">
+                                                            <div className='pro-box-t'>
+                                                                <h5 className='pro-name'>{e.product_name}</h5>
+                                                                <h6>Price : {e.product_price}</h6>
+                                                            </div>    
+
+                                                                <p className='description-pro'>{e.product_description}</p>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                        ))
+                                    }
+                       
+                    </div>
+      <div className="btn-box">
+        <a href="/products">
+          View All products
+        </a>
+      </div>
+    </div>
+  </section>
+  {/* end product section */}
   {/* arrival section */}
   <section className="arrival_section">
     <div className="container">
@@ -369,348 +486,7 @@ function Home(props) {
     </div>
   </section>
   {/* end arrival section */}
-  {/* product section */}
-  <section className="product_section layout_padding">
-    <div className="container">
-      <div className="heading_container heading_center">
-        <h2>
-          Our <span>products</span>
-        </h2>
-      </div>
-      <div className="row">
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Men's Shirt
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p1.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $75
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p2.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $80
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p3.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $68
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p4.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $70
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p5.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $75
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p6.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $58
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p7.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $80
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p8.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $65
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p9.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $65
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p10.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $65
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p11.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Men's Shirt
-              </h5>
-              <h6>
-                $65
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 col-md-4 col-lg-4">
-          <div className="box">
-            <div className="option_container">
-              <div className="options">
-                <a href className="option1">
-                  Add To Cart
-                </a>
-                <a href className="option2">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-            <div className="img-box">
-              <img src="images/p12.png" alt />
-            </div>
-            <div className="detail-box">
-              <h5>
-                Women's Dress
-              </h5>
-              <h6>
-                $65
-              </h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="btn-box">
-        <a href>
-          View All products
-        </a>
-      </div>
-    </div>
-  </section>
-  {/* end product section */}
-  {/* subscribe section */}
-  <section className="subscribe_section">
-    <div className="container-fuild">
-      <div className="box">
-        <div className="row">
-          <div className="col-md-6 offset-md-3">
-            <div className="subscribe_form ">
-              <div className="heading_container heading_center">
-                <h3>Subscribe To Get Discount Offers</h3>
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-              <form action>
-                <input type="email" placeholder="Enter your email" />
-                <button>
-                  subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {/* end subscribe section */}
+  
   {/* client section */}
   <section className="client_section layout_padding">
     <div className="container">
@@ -801,6 +577,33 @@ function Home(props) {
       </div>
     </div>
   </section>
+
+
+
+  {/* subscribe section */}
+  <section className="subscribe_section">
+    <div className="container-fuild">
+      <div className="box">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <div className="subscribe_form ">
+              <div className="heading_container heading_center">
+                <h3>Subscribe To Get Discount Offers</h3>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+              <form action>
+                <input type="email" placeholder="Enter your email" />
+                <button>
+                  subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {/* end subscribe section */}
 </div>
 
     );

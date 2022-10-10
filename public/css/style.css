@@ -1362,3 +1362,29 @@ form input{
 .order-view-table {
   margin: 50px 0;
 }
+.order-view-table .container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+a.navbar-brand img {
+  width: 25%;
+}
+.slider_section{
+  height: 75vh;
+}
+td.view-oreder-img img {
+  width: 80px;
+}
+.css-1z10yd4-MuiFormControl-root-MuiTextField-root{
+  margin: 15px 0 !important;
+}
+.why_section .box{
+  background-color: #f74a2e;
+}
+.logo_footer img {
+  width: 35%;
+}
+
+.arrival_section .arrival_bg_box img {
+  width: 40%;
+}

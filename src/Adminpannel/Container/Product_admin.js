@@ -232,7 +232,7 @@ function Product_admin(props) {
             <Button variant="outlined" onClick={handleClickOpen}>
                 Add Product
             </Button>
-            <div>
+            <div className='container'>
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         rows={productdata}
@@ -242,7 +242,7 @@ function Product_admin(props) {
                         checkboxSelection
                     />
                 </div>
-                <div>
+            <div>
 
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle>Add Product</DialogTitle>

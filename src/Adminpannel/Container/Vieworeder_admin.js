@@ -104,14 +104,25 @@ function Vieworeder_admin(props) {
                                     <td>{o.User.user_phone}</td>
                                     <td>{o.User.user_address}</td>
                                     <td>
+                                        <thead>
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Product Price</th>
+                                                <th>Product image</th>
+                                            </tr>
+                                        </thead>
                                         
-                                        <ul>
+                                        <tbody>
                                             {
                                                 o.Cart.map((s, i) => (
-                                                    <li>{s.product_name}</li>
+                                                    <tr>
+                                                        <td>{s.product_name}</td>
+                                                        <td>₹{s.product_price}</td>
+                                                        <td className='view-oreder-img'><img src={s.url}/></td>
+                                                    </tr>
                                                     ))
                                             }
-                                        </ul>
+                                         </tbody>
                                     </td>
                                 </tr>
                             ))

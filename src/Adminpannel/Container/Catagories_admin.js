@@ -232,9 +232,10 @@ function Catagories_admin(props) {
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Add Product
+                Add Catagories
             </Button>
-            <div>
+            <div className="container">
+                
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         rows={catagories_data}
@@ -244,10 +245,10 @@ function Catagories_admin(props) {
                         checkboxSelection
                     />
                 </div>
-                <div>
+            <div>
 
                     <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Empoyee Data</DialogTitle>
+                        <DialogTitle>Catagories Data</DialogTitle>
                         <Formik value={formik}>
                             <Form key={formik} onSubmit={formik.handleSubmit}>
                                 <DialogContent>
