@@ -1245,7 +1245,7 @@ p.single-des span {
   background: #ef4049;
   border: none;
   color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 .box.Add-button .options button:hover {
   background: #000;
@@ -1387,4 +1387,39 @@ td.view-oreder-img img {
 
 .arrival_section .arrival_bg_box img {
   width: 40%;
+}
+/* a.nav-link.active {
+  color: #ef4049 !important;
+} */
+section.product_section section.catagory-view {
+  margin-top: 5%;
+}
+.Continue .options button {
+  padding: 15px 20px !important;
+}
+.row.place-btn {
+  padding: 15px 0 !important;
+}
+.options.btn-plceorder button , .btn-plceorder {
+  width: 100% !important;
+}
+li.nav-item {
+  position: relative;
+}
+span.cart-count {
+  background: #e73c44;
+  color: #fff;
+  padding: 9px;
+  position: absolute;
+  width: 15px;
+  border-radius: 20px;
+  justify-content: center;
+  height: 15px;
+  display: flex;
+  top: -2px;
+  align-items: center;
+  right: 10px;
+}
+table tr th, td {
+  border: 1px solid #00000029 !important;
 }

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 function Header(props) {
+    const Cartproduct = useSelector(state => state.cartpro);
+    const CartProData = Cartproduct.cart.length;
     return (
         <header className="header_section">
                 <div className="container">
@@ -36,6 +39,7 @@ function Header(props) {
                             <NavLink exact className="nav-link" to={"/products"}>Products</NavLink>
 
                         </li>
+                   
                         {/* <li className="nav-item">
                             <NavLink exact className="nav-link" to={"/catagory"}>Catagory</NavLink>
 
@@ -107,13 +111,10 @@ function Header(props) {
                                 <g>
                                 </g>
                             </svg>
+                            <span className='cart-count'>{CartProData}</span>
                             </a>
                         </li>
-                        <form className="form-inline">
-                            <button className="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i className="fa fa-search" aria-hidden="true" />
-                            </button>
-                        </form>
+                       
                         </ul>
                     </div>
                     </nav>

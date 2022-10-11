@@ -79,7 +79,7 @@ dispatch(getProduct())
                 <div className="detail-box">
                   <h1>
                     <span>
-                      Sale 20% Off
+                      Sale 15% Off
                     </span>
                     <br />
                     On Everything
@@ -104,7 +104,7 @@ dispatch(getProduct())
                 <div className="detail-box">
                   <h1>
                     <span>
-                      Sale 20% Off
+                      Sale 10% Off
                     </span>
                     <br />
                     On Everything
@@ -415,6 +415,41 @@ dispatch(getProduct())
           Our <span>products</span>
         </h2>
       </div>
+      <section className='catagory-view'>
+            <div className="container">
+            <div className="row">
+            <a href="#" onClick={(e) => handleCatagory("All")}>
+                     <div className='cat-view-box'> 
+                             <div className='box-img'>
+                                <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f6cd.png" />
+                             </div>
+                               <h4 className='cat-box-title'>All</h4>
+                             
+                      </div>
+                      </a>
+                    {
+
+                        catagory.doctor.map((c) =>{
+                            return(
+                            <a href="#" onClick={(e) => handleCatagory(c.id)}>
+                                <div className='cat-view-box'>
+                                
+                                    <div className='box-img'>
+                                        <img src={c.url}/>
+                                    </div>
+                                    <h4 className='cat-box-title'>{c.catagory_name}</h4>
+                                </div>
+                            </a>
+                            )
+                        })
+                    }
+                    
+
+            </div>
+
+            </div>
+
+            </section>
       <div className="row">
                      
                                     {

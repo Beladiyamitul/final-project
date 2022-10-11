@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from 'reactstrap';
 import CloseIcon from '@mui/icons-material/Close';
 import { getorderdata, postorder } from '../../Redux/Acton/orderplace.action';
+import { useHistory } from 'react-router-dom';
 
 function CartDetails(props) {
     const [cartData, setCartData] = useState([])
@@ -20,6 +21,8 @@ function CartDetails(props) {
     const productdata = product.product;
     const CartProData = Cartproduct.cart;
 
+
+    const history = useHistory()
 
 
 
@@ -85,7 +88,7 @@ function CartDetails(props) {
     let schema = yup.object().shape({
         user_name: yup.string().required("Please enter name"),
         user_email: yup.string().required("Please enter email"),
-        user_address: yup.string().required("please enter address"),
+        user_address: yup.string().required("please enter address").max(100, 'Must be exactly 100 digits'),
         user_phone: yup.number().required("please enter Phone number"),
 
     });
@@ -103,7 +106,7 @@ function CartDetails(props) {
                 userDetails: values,
                 cartDetails: cartData
             };
-       
+            history.push('/')
             dispatch(postorder(submitorder))
             resetForm();
 
@@ -148,7 +151,7 @@ function CartDetails(props) {
                                                 id="user_name"
                                                 name="user_name"
                                                 value={formik.values.user_name}
-                                                label="User Name"
+                                                label="Name"
                                                 fullWidth
                                                 variant="standard"
                                                 onChange={formik.handleChange}
@@ -164,7 +167,7 @@ function CartDetails(props) {
                                                 id="user_email"
                                                 name="user_email"
                                                 value={formik.values.user_email}
-                                                label="User email"
+                                                label="email"
                                                 fullWidth
                                                 variant="standard"
                                                 onChange={formik.handleChange}
@@ -180,7 +183,7 @@ function CartDetails(props) {
                                                 id="user_address"
                                                 name="user_address"
                                                 value={formik.values.user_address}
-                                                label="User Address"
+                                                label="Address"
                                                 fullWidth
                                                 variant="standard"
                                                 onChange={formik.handleChange}
@@ -266,7 +269,7 @@ function CartDetails(props) {
                                             ))
                                         }
                                     </table>
-                                    <div className="box Add-button">
+                                    <div className="box Add-button Continue">
                                         <div className="option_container">
                                             <div className="options">
                                                 <button><a href="/products" className="option1"> Continue Shopping</a></button>
@@ -304,7 +307,7 @@ function CartDetails(props) {
                                     <div className="box Add-button btn-plceorder">
                                         <div className="option_container btn-plceorder">
                                             <div className="options btn-plceorder">
-                                                <button><a href onClick={orderplace} className="option1"> PlaceOrder</a></button>
+                                                <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
 
                                             </div>
                                         </div>
@@ -316,7 +319,7 @@ function CartDetails(props) {
                                 <div className="box Add-button btn-plceorder">
                                     <div className="option_container btn-plceorder">
                                         <div className="options btn-plceorder">
-                                            <button><a href onClick={orderplace} className="option1"> PlaceOrder</a></button>
+                                            <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
 
                                         </div>
                                     </div>

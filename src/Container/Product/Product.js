@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import { DataGrid } from '@mui/x-data-grid';
+
 import { getdocdata } from '../../Redux/Acton/doctor.action';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../Redux/Acton/product.action';
@@ -171,7 +165,7 @@ useEffect(() =>{
                                                         <div className="detail-box">
                                                             <div className='pro-box-t'>
                                                                 <h5 className='pro-name'>{e.product_name}</h5>
-                                                                <h6>Price : {e.product_price}</h6>
+                                                                <h6>Price : ₹{e.product_price}</h6>
                                                             </div>    
 
                                                                 <p className='description-pro'>{e.product_description}</p>
