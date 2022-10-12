@@ -22,3 +22,7 @@ export const decrement = (id) => (dispatch) =>{
 export const deletecart = (id) => (dispatch) =>{
     dispatch ({type : ActionType.DELETE_CART , payload : id })
 }
+
+export const emptycart = () => (dispatch) =>{
+    dispatch({type:ActionType.EMPTY_CART})
+}

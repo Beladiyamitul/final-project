@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, deletecart, increment } from '../../Redux/Acton/cart.action';
+import { decrement, deletecart, emptycart, increment } from '../../Redux/Acton/cart.action';
 import { getProduct } from '../../Redux/Acton/product.action';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
@@ -85,11 +85,13 @@ function CartDetails(props) {
         cartDataFun();
     }, [CartProData])
 
+    var str='0123456789';
+
     let schema = yup.object().shape({
-        user_name: yup.string().required("Please enter name"),
+        user_name: yup.string().required("Please enter name").matches(/[abcdefghijklmnopqrstuvwxyz]+/ , 'Is not in correct format'),
         user_email: yup.string().required("Please enter email"),
         user_address: yup.string().required("please enter address").max(100, 'Must be exactly 100 digits'),
-        user_phone: yup.number().required("please enter Phone number"),
+        user_phone: yup.string().required("please enter Phone number").max(10, 'Must be exactly 10 digits'),
 
     });
 
@@ -106,8 +108,10 @@ function CartDetails(props) {
                 userDetails: values,
                 cartDetails: cartData
             };
-            history.push('/')
+
             dispatch(postorder(submitorder))
+            dispatch(emptycart())
+            history.push('/')
             resetForm();
 
         }
@@ -158,7 +162,7 @@ function CartDetails(props) {
 
                                             />
                                             {
-                                                formik.errors.user_name ? <p>{formik.errors.user_name}</p> : null
+                                                formik.errors.user_name ? <p className='error-form'>{formik.errors.user_name}</p> : null
                                             }
 
                                             <TextField
@@ -174,7 +178,7 @@ function CartDetails(props) {
 
                                             />
                                             {
-                                                formik.errors.user_email ? <p>{formik.errors.user_email}</p> : null
+                                                formik.errors.user_email ? <p className='error-form'>{formik.errors.user_email}</p> : null
                                             }
 
                                             <TextField
@@ -190,7 +194,7 @@ function CartDetails(props) {
 
                                             />
                                             {
-                                                formik.errors.user_address ? <p>{formik.errors.user_address}</p> : null
+                                                formik.errors.user_address ? <p className='error-form'>{formik.errors.user_address}</p> : null
                                             }
 
                                             <TextField
@@ -200,13 +204,14 @@ function CartDetails(props) {
                                                 name="user_phone"
                                                 value={formik.values.user_phone}
                                                 label="phone Number"
+                                                type="number"
                                                 fullWidth
                                                 variant="standard"
                                                 onChange={formik.handleChange}
 
                                             />
                                             {
-                                                formik.errors.user_phone ? <p>{formik.errors.user_phone}</p> : null
+                                                formik.errors.user_phone ? <p className='error-form'>{formik.errors.user_phone}</p> : null
                                             }
 
 

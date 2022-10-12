@@ -88,7 +88,7 @@ useEffect(() =>{
                     <div className="row">
                         <div className="col-md-12">
                             <div className="full">
-                                <h3>Product </h3>
+                                <h3>Products </h3>
                             </div>
                         </div>
                     </div>
@@ -100,10 +100,10 @@ useEffect(() =>{
             <div className="row">
             <a href="#" onClick={(e) => handleCatagory("All")}>
                      <div className='cat-view-box'> 
-                             <div className='box-img'>
+                             <div className='box-img cart-box-img'>
                                 <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f6cd.png" />
                              </div>
-                               <h4 className='cat-box-title'>All</h4>
+                               <h4 className='cat-box-title pro-cart-tit'>All</h4>
                              
                       </div>
                       </a>
@@ -114,10 +114,10 @@ useEffect(() =>{
                             <a href="#" onClick={(e) => handleCatagory(c.id)}>
                                 <div className='cat-view-box'>
                                 
-                                    <div className='box-img'>
+                                    <div className='box-img cart-box-img'>
                                         <img src={c.url}/>
                                     </div>
-                                    <h4 className='cat-box-title'>{c.catagory_name}</h4>
+                                    <h4 className='cat-box-title pro-cart-tit'>{c.catagory_name}</h4>
                                 </div>
                             </a>
                             )
@@ -135,11 +135,7 @@ useEffect(() =>{
             {/* product section */}
             <section className="product_section layout_padding">
                 <div className="container">
-                    <div className="heading_container heading_center">
-                        <h2>
-                            Our <span>products</span>
-                        </h2>
-                    </div>
+                    
                     <div className="row">
                      
                                     {

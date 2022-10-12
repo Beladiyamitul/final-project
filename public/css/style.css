@@ -1257,7 +1257,7 @@ p.single-des span {
   background: #000000;
   border: none;
   color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 .box.Add-button .options .buy-now:hover {
   background: #ef4049;
@@ -1422,4 +1422,29 @@ span.cart-count {
 }
 table tr th, td {
   border: 1px solid #00000029 !important;
+}
+.cart-box-img img {
+  display: none;
+}
+h4.pro-cart-tit {
+  background: #ef4049;
+  padding: 15px;
+  color: #fff;
+  border-radius: 30px;
+}
+h4.pro-cart-tit:hover {
+  background: #000;
+  transition: all 0.5s;
+}
+h4.pro-cart-tit:active {
+  background: #000 !important;
+}
+button:focus{
+  border: none !important;
+}
+p.error-form {
+  color: red;
+}
+.order-view-table table tr th, td{
+  padding: 10px !important;
 }

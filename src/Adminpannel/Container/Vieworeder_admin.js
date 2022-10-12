@@ -107,6 +107,7 @@ function Vieworeder_admin(props) {
                                         <thead>
                                             <tr>
                                                 <th>Product Name</th>
+                                                <th>Product Quantity</th>
                                                 <th>Product Price</th>
                                                 <th>Product image</th>
                                             </tr>
@@ -117,6 +118,7 @@ function Vieworeder_admin(props) {
                                                 o.Cart.map((s, i) => (
                                                     <tr>
                                                         <td>{s.product_name}</td>
+                                                        <td>{s.quantity}</td>
                                                         <td>₹{s.product_price}</td>
                                                         <td className='view-oreder-img'><img src={s.url}/></td>
                                                     </tr>

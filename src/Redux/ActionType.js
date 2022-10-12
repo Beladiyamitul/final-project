@@ -32,6 +32,9 @@ export const GET_ORDER = "GET_ORDER"
 
 export const POST_ORDER = "POST_ORDER"
 
+export const EMPTY_CART = "EMPTY_CART"
+
+
 
 
 

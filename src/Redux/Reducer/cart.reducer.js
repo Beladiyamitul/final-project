@@ -41,6 +41,13 @@ export const CartReducer = (state = initalstate, action) => {
                 cart: action.payload,
                 error: ""
             }
+        case ActionType.EMPTY_CART:
+            return {
+                ...state,
+                isLoading: false,
+                cart: [],
+                error: ""
+            }
         case ActionType.DELETE_CART:
             return {
                 ...state,
