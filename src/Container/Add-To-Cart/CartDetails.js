@@ -11,6 +11,7 @@ import { Button } from 'reactstrap';
 import CloseIcon from '@mui/icons-material/Close';
 import { getorderdata, postorder } from '../../Redux/Acton/orderplace.action';
 import { useHistory } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 function CartDetails(props) {
     const [cartData, setCartData] = useState([])
@@ -85,10 +86,10 @@ function CartDetails(props) {
         cartDataFun();
     }, [CartProData])
 
-    var str='0123456789';
+    var str = '0123456789';
 
     let schema = yup.object().shape({
-        user_name: yup.string().required("Please enter name").matches(/[abcdefghijklmnopqrstuvwxyz]+/ , 'Is not in correct format'),
+        user_name: yup.string().required("Please enter name").matches(/[abcdefghijklmnopqrstuvwxyz]+/, 'Is not in correct format'),
         user_email: yup.string().required("Please enter email"),
         user_address: yup.string().required("please enter address").max(100, 'Must be exactly 100 digits'),
         user_phone: yup.string().required("please enter Phone number").max(10, 'Must be exactly 10 digits'),
@@ -110,9 +111,10 @@ function CartDetails(props) {
             };
 
             dispatch(postorder(submitorder))
-            dispatch(emptycart())
             history.push('/')
             resetForm();
+            toast.success("Your Order is successfully submited")
+            dispatch(emptycart())
 
         }
 
@@ -127,17 +129,17 @@ function CartDetails(props) {
                 <div className='container'>
                     <div className='row main-tit'>
                         <div className='col-12'>
-                        {placeorder ?
-                            <div className='Add-main-title'>
-                                <h3>Place Order</h3>
-                            </div>
-                             :
-                             <div className='Add-main-title'>
-                                <h3>Add To Cart Items</h3>
-                            </div>
-                        }
+                            {placeorder ?
+                                <div className='Add-main-title'>
+                                    <h3>Place Order</h3>
+                                </div>
+                                :
+                                <div className='Add-main-title'>
+                                    <h3>Add To Cart Items</h3>
+                                </div>
+                            }
                         </div>
-                
+
 
                     </div>
                     <div className='row'>
@@ -242,7 +244,7 @@ function CartDetails(props) {
                                             cartData.map((k) => (
 
                                                 <tbody>
-                                                    <tr>    
+                                                    <tr>
                                                         <td>
                                                             <a href="">
                                                                 <img src={k.url} alt='' width={70} />
@@ -297,7 +299,7 @@ function CartDetails(props) {
                             </div>
                             <div className='row'>
                                 <p className='main-tit-box'>Discount</p>
-                                <p className='sub-tit-box'>₹{discoutnt}</p>
+                                <p className='sub-tit-box'>- ₹{discoutnt}</p>
                             </div>
 
                             <div className='row final-total'>
@@ -321,20 +323,19 @@ function CartDetails(props) {
                                 </div>
                                 :
                                 <div className='row  place-btn'>
-                                <div className="box Add-button btn-plceorder">
-                                    <div className="option_container btn-plceorder">
-                                        <div className="options btn-plceorder">
-                                            <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
+                                    <div className="box Add-button btn-plceorder">
+                                        <div className="option_container btn-plceorder">
+                                            <div className="options btn-plceorder">
+                                                <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
 
+                                            </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
-                            </div>
                             }
 
                         </div>
-
 
                     </div>
                 </div>

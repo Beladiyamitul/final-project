@@ -289,6 +289,7 @@ function Product_admin(props) {
                                             labelId="demo-simple-select-label"
                                             id="product_list"
                                             name='product_list'
+                                            value={formik.values.product_list}
                                             // value={formik.values.product_list}
                                             label="Product"
                                             onChange={formik.handleChange}

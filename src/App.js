@@ -17,6 +17,9 @@ import ProductDetails from "./Container/Productdetails/ProductDetails";
 import CartDetails from "./Container/Add-To-Cart/CartDetails";
 import Vieworeder_admin from "./Adminpannel/Container/Vieworeder_admin";
 import Catagory from "./Container/Catagory/Catagory";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
@@ -44,6 +47,20 @@ function App() {
         </Switch>
         <Footer />
         </PersistGate>
+        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
+                        {/* Same as */}
+                        <ToastContainer />
 
 </Provider>
 
