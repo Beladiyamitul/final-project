@@ -36,6 +36,30 @@ export const EMPTY_CART = "EMPTY_CART"
 
 
 
+export const AUTH_LOGIN = "AUTH_LOGIN"
+
+export const AUTH_LOGED = "AUTH_LOGED"
+
+export const LOGOUT_USER = "LOGOUT_USER"
+
+export const LOGGGEDOUT_USER = "LOGGGEDOUT_USER"
+
+export const AUTH_SIGNUP = "AUTH_SIGNUP"
+
+export const EMAIL_VERIFY = "EMAIL_VERIFY"
+
+export const GOOGLE_LOGIN = "GOOGLE_LOGIN"
+
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD"
+
+
+export const SET_ALERT = "SET_ALERT"
+
+export const RESET_ALERT = "RESET_ALERT"
+
+
+
+
 
 
 

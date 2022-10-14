@@ -11,7 +11,7 @@ import Footer from './Component/Footer/Footer';
 import Catagories_admin from "./Adminpannel/Container/Catagories_admin";
 import Product_admin from "./Adminpannel/Container/Product_admin";
 import { Provider } from "react-redux";
-import { counterStore } from "./Redux/Store";
+import { counterStore, persistor, store } from "./Redux/Store";
 import { PersistGate } from "redux-persist/integration/react";
 import ProductDetails from "./Container/Productdetails/ProductDetails";
 import CartDetails from "./Container/Add-To-Cart/CartDetails";
@@ -19,14 +19,15 @@ import Vieworeder_admin from "./Adminpannel/Container/Vieworeder_admin";
 import Catagory from "./Container/Catagory/Catagory";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { SnackbarProvider } from "notistack";
 
 
 function App() {
 
-  let { store, persistor } = counterStore()
+  // let { store, persistor } = counterStore()
   return (
     <>
-
+ <SnackbarProvider maxSnack={3}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
         <Header />
@@ -63,6 +64,7 @@ function App() {
                         <ToastContainer />
 
 </Provider>
+</SnackbarProvider>
 
 
     </>

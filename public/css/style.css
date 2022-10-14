@@ -1448,3 +1448,10 @@ p.error-form {
 .order-view-table table tr th, td{
   padding: 10px !important;
 }
+.google-login img {
+  width: 10% !important;
+  margin-right: 2% !important;
+}
+.google-login {
+  width: 22%;
+}

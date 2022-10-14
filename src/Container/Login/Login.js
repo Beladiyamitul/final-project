@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { googleLogin, loginUser, resetPassword, signupUser } from '../../Redux/Acton/login.action';
 
 function Login(props) {
+
+  const dispatch = useDispatch()
 
   const [User, setUserType] = useState('Login')
   // const [Reset, setReset] = useState(false)
@@ -14,7 +18,7 @@ function Login(props) {
   }
 
   let Signup = {
-    name: yup.string().required("Please enter your name"),
+    // name: yup.string().required("Please enter your name"),
     email: yup.string().email("Please enter valid email").required("Please enter Email"),
     password: yup.string().required("Please enter password")
   }
@@ -35,7 +39,7 @@ function Login(props) {
   else if (User === 'Signup') {
     schema = yup.object().shape(Signup);
     iniValue = {
-      name: '',
+      // name: '',
       email: '',
       password: ''
     }
@@ -54,14 +58,23 @@ function Login(props) {
     onSubmit: values => {
       if (User === 'Login') {
         console.log('Login Successfully ');
+        dispatch(loginUser(values))
+
       } else if (User === 'Signup') {
         console.log('Signup Successfully ');
+        dispatch(signupUser(values))
       } else if (User === 'Forgot') {
-        console.log('Your OTP is : 852002');
+        console.log(values);
+        dispatch(resetPassword(values))
+        // console.log('Your OTP is : 852002');
     }
     }
   });
 
+  const googleSignin = () =>{
+    dispatch(googleLogin())
+    
+  }
 
   return (
     <main id="main">
@@ -94,7 +107,7 @@ function Login(props) {
                     </div> :
                     null
                 }
-                {
+                {/* {
                   User === 'Signup' ?
                     <div className="col-md-4 form-group">
                       <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" onChange={formik.handleChange} />
@@ -107,7 +120,7 @@ function Login(props) {
                     </div>
                     :
                     null
-                }
+                } */}
                 {
                   (User === 'Login' || User === 'Signup') ?
                     <>
@@ -166,6 +179,9 @@ function Login(props) {
                       <p className='text-center border-0 ms-0 mt-3'>Already have an account </p>
                     </>
               }
+                <div className='text-center'>
+                <Button className='appointment-btn-2 border-0 m-0 google-login' type="submit" onClick={() => googleSignin()}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"/>Login With Google</Button>
+              </div>
             </Form>
 
 

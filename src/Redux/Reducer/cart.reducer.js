@@ -14,7 +14,7 @@ export const initalstate = {
 
 export const CartReducer = (state = initalstate, action) => {
 
-    console.log("action.type",action.type, action.payload, state.cart);
+    // console.log("action.type",action.type, action.payload, state.cart);
 
     switch (action.type) {
        
