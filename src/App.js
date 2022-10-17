@@ -20,6 +20,9 @@ import Catagory from "./Container/Catagory/Catagory";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { SnackbarProvider } from "notistack";
+import PublicRoute from "./Container/route/PublicRoute";
+import PrivateRoute from "./Container/route/PrivateRoute";
+import AppRoute from "./Container/route/AppRoute";
 
 
 function App() {
@@ -27,44 +30,45 @@ function App() {
   // let { store, persistor } = counterStore()
   return (
     <>
- <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={3}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-        <Header />
-        <Switch>
-          <Route exact path={"/"} component={Home} />
-          <Route exact path={"/about"} component={About} />
-          <Route exact path={"/testimonial"} component={Testimonial} />
-          <Route exact path={"/products"} component={Product} />
-          <Route exact path={"/product_admin"} component={Product_admin} />
-          <Route exact path={"/catagory"} component={Catagory} />
-          <Route exact path={"/vieworder_admin"} component={Vieworeder_admin} />
-          <Route exact path={"/product_detail"} component={ProductDetails} />
-          <Route exact path={"/cart_detail"} component={CartDetails} />
-          <Route exact path={"/Catagories_admin"} component={Catagories_admin} />
-          <Route exact path={"/blog"} component={Blog_list} />
-          <Route exact path={"/contact"} component={Contact} />
-          <Route exact path={"/login"} component={Login} />
-        </Switch>
-        <Footer />
-        </PersistGate>
-        <ToastContainer
-                            position="top-right"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                        />
-                        {/* Same as */}
-                        <ToastContainer />
+            <Header />
+            <AppRoute/>
+            {/* <Switch>
+              <PublicRoute exact path={"/"} component={Home} />
+              <PublicRoute exact path={"/about"} component={About} />
+              <PublicRoute exact path={"/testimonial"} component={Testimonial} />
+              <PrivateRoute exact path={"/products"} component={Product} />
+              <Route exact path={"/product_admin"} component={Product_admin} />
+              <PublicRoute exact path={"/catagory"} component={Catagory} />
+              <Route exact path={"/vieworder_admin"} component={Vieworeder_admin} />
+              <PublicRoute exact path={"/product_detail"} component={ProductDetails} />
+              <PublicRoute exact path={"/cart_detail"} component={CartDetails} />
+              <Route exact path={"/Catagories_admin"} component={Catagories_admin} />
+              <PublicRoute exact path={"/blog"} component={Blog_list} />
+              <PublicRoute exact path={"/contact"} component={Contact} />
+              <PublicRoute exact path={"/login"} component={Login} />
+            </Switch> */}
+            <Footer />
+          </PersistGate>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
 
-</Provider>
-</SnackbarProvider>
+        </Provider>
+      </SnackbarProvider>
 
 
     </>

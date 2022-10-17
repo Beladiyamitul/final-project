@@ -1,10 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { logoutUser } from '../../Redux/Acton/login.action';
+import Alert from '../Alert/Alert';
 
 function Header(props) {
     const Cartproduct = useSelector(state => state.cartpro);
+    const dispatch = useDispatch();
+    
+    const authUser = useSelector(state => state.login)
     const CartProData = Cartproduct.cart.length;
+
+    const handlelogout = () =>{
+        dispatch(logoutUser())
+    } 
+     
     return (
         <header className="header_section">
                 <div className="container">
@@ -53,10 +63,21 @@ function Header(props) {
                             {/* <a className="nav-link" href="contact.html">Contact</a> */}
                             <NavLink exact className="nav-link" to={"/contact"}>Contact</NavLink>
                         </li>
+                    
+
+                        {
+                        authUser.user === null ?   
                         <li className="nav-item">
                             {/* <a className="nav-link" href="contact.html">Contact</a> */}
                             <NavLink exact className="nav-link" to={"/login"}><i className="fa fa-user" aria-hidden="true" /></NavLink>
                         </li>
+                          : 
+                          <li className="nav-item">
+                          <NavLink  onClick={() => handlelogout()} to={"/auth"} className="appointment-btn scrollto nav-link">
+                             <span className="d-none d-md-inline  ">Logout</span>
+                          </NavLink>
+                          </li>
+                    }
                         <li className="nav-item">
                             <a className="nav-link" href="/cart_detail">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style={{enableBackground: 'new 0 0 456.029 456.029'}} xmlSpace="preserve">
@@ -116,6 +137,7 @@ function Header(props) {
                         </li>
                        
                         </ul>
+                        <Alert />
                     </div>
                     </nav>
                 </div>

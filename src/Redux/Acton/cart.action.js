@@ -26,3 +26,7 @@ export const deletecart = (id) => (dispatch) =>{
 export const emptycart = () => (dispatch) =>{
     dispatch({type:ActionType.EMPTY_CART})
 }
+
+export const emptybuy = () => (dispatch) =>{
+    dispatch({type:ActionType.EMPTY_BUY})
+}

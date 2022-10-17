@@ -34,6 +34,8 @@ export const POST_ORDER = "POST_ORDER"
 
 export const EMPTY_CART = "EMPTY_CART"
 
+export const EMPTY_BUY = "EMPTY_BUY"
+
 
 
 export const AUTH_LOGIN = "AUTH_LOGIN"

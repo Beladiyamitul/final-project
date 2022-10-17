@@ -22,6 +22,15 @@ function ProductDetails(props) {
         dispatch(AddcartAction(Datacart))
         history.push("/cart_detail")
     }
+    const handlebuy = (g) => {
+        const Buydata = {
+            id: g,
+            quantity: quantity,
+            search : 'Buy'
+            
+        }
+        history.push("/cart_detail" , Buydata)
+    }
 
     return (
         <>
@@ -45,7 +54,7 @@ function ProductDetails(props) {
                                         <div className="option_container">
                                             <div className="options">
                                                 <button><a href className="option1" onClick={() => handlecart(k.id)} ><ShoppingCartIcon /> Add To Cart</a></button>
-                                                <button class="buy-now "> <a href className="option2" ><BoltIcon /> Buy Now </a></button>
+                                                <button class="buy-now "> <a href className="option2" onClick={() => handlebuy(k.id)} ><BoltIcon /> Buy Now </a></button>
                                             </div>
                                         </div>
 

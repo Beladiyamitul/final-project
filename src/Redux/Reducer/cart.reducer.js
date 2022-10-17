@@ -5,6 +5,7 @@ export const initalstate = {
 
     isLoading: false,
     cart: [],
+    
     error: ""
 
 
@@ -46,6 +47,13 @@ export const CartReducer = (state = initalstate, action) => {
                 ...state,
                 isLoading: false,
                 cart: [],
+                error: ""
+            }
+        case ActionType.EMPTY_BUY:
+            return {
+                ...state,
+                isLoading: false,
+                buy: [],
                 error: ""
             }
         case ActionType.DELETE_CART:

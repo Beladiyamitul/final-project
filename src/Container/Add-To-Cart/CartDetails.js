@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, deletecart, emptycart, increment } from '../../Redux/Acton/cart.action';
+import { decrement, deletecart, emptybuy, emptycart, increment } from '../../Redux/Acton/cart.action';
 import { getProduct } from '../../Redux/Acton/product.action';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
@@ -15,6 +15,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 function CartDetails(props) {
     const [cartData, setCartData] = useState([])
+    const [Buyartdata, setBuycartdata] = useState([])
     const dispatch = useDispatch();
     const [placeorder, setPlaceorder] = useState(false)
     const product = useSelector(state => state.product);
@@ -32,8 +33,10 @@ function CartDetails(props) {
     }
 
 
+    const Procart = [];
+    const Buycart = [];
+
     const cartDataFun = () => {
-        const Procart = [];
 
         productdata.map((j) => {
             CartProData.map((s) => {
@@ -48,6 +51,24 @@ function CartDetails(props) {
         })
 
         setCartData(Procart)
+
+    }
+    
+    const buyDataFun = () => {
+
+        productdata.map((j) => {
+          
+                if (j.id === props?.location?.state?.id) {
+                    const quacountB = {
+                        ...j,
+                        quantity: props.location.state.quantity
+                    }
+                    Buycart.push(quacountB)
+                }
+            
+        })
+
+        setBuycartdata(Buycart)
 
     }
 
@@ -86,6 +107,13 @@ function CartDetails(props) {
         cartDataFun();
     }, [CartProData])
 
+    useEffect(() => {
+       if (props?.location?.state?.search === 'Buy') {
+        setPlaceorder(true)
+        
+       }
+    }, [props?.location?.state?.search ])
+
     var str = '0123456789';
 
     let schema = yup.object().shape({
@@ -105,6 +133,19 @@ function CartDetails(props) {
         },
         validationSchema: schema,
         onSubmit: (values, { resetForm }) => {
+            if (props?.location?.state?.search === 'Buy') {
+                const submitorder = {
+                    userDetails: values,
+                    cartDetails: cartData
+                };
+    
+                dispatch(postorder(submitorder))
+                history.push('/')
+                resetForm();
+                toast.success("Your Order is successfully submited")
+                dispatch(emptybuy())
+
+            }else{
             const submitorder = {
                 userDetails: values,
                 cartDetails: cartData
@@ -115,6 +156,7 @@ function CartDetails(props) {
             resetForm();
             toast.success("Your Order is successfully submited")
             dispatch(emptycart())
+        }
 
         }
 
