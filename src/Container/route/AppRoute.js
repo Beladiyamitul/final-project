@@ -1,6 +1,4 @@
 import React from 'react';
-import PublicRoute from "../route/PrivateRoute";
-import PrivateRoute from "../route/PublicRoute";
 import Home from '../Home/Home';
 import About from '../About/About';
 import Testimonial from '../Testimonial/Testimonial';
@@ -14,13 +12,13 @@ import Catagories_admin from '../../Adminpannel/Container/Catagories_admin';
 import Contact from '../Contact/Contact';
 import Blog_list from '../Blog_list/Blog_list';
 import Login from '../Login/Login';
-import { Route, Router, Switch } from 'react-router-dom';
-import { history } from '../../history';
-import ClinteRoute from './ClinteRoute';
+import { Route, Switch } from 'react-router-dom';
+import PublicRoute from '../route/PublicRoute';
+
 
 function AppRoute(props) {
     return (
-
+      <>
          <Switch>
               <PublicRoute exact path={"/"} component={Home} />
               <PublicRoute exact path={"/about"} component={About} />
@@ -36,6 +34,7 @@ function AppRoute(props) {
               <PublicRoute exact path={"/contact"} component={Contact} />
               <PublicRoute exact path={"/login"} restricted={true} component={Login} />
             </Switch>
+      </>
 
     );
 }

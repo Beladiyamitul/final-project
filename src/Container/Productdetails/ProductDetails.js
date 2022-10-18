@@ -22,13 +22,14 @@ function ProductDetails(props) {
         dispatch(AddcartAction(Datacart))
         history.push("/cart_detail")
     }
-    const handlebuy = (g) => {
+    const handlebuy = (f) => {
         const Buydata = {
-            id: g,
+            id: f,
             quantity: quantity,
             search : 'Buy'
             
         }
+        console.log("Buydata" , Buydata);
         history.push("/cart_detail" , Buydata)
     }
 

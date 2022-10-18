@@ -15,7 +15,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 function CartDetails(props) {
     const [cartData, setCartData] = useState([])
-    const [Buyartdata, setBuycartdata] = useState([])
+    const [Buycartdata, setBuycartdata] = useState([])
     const dispatch = useDispatch();
     const [placeorder, setPlaceorder] = useState(false)
     const product = useSelector(state => state.product);
@@ -23,6 +23,9 @@ function CartDetails(props) {
     const productdata = product.product;
     const CartProData = Cartproduct.cart;
 
+    const login = useSelector(state => state.login);
+
+console.log("login", login);
 
     const history = useHistory()
 
@@ -33,10 +36,10 @@ function CartDetails(props) {
     }
 
 
-    const Procart = [];
-    const Buycart = [];
-
+   
+    
     const cartDataFun = () => {
+        const Procart = [];
 
         productdata.map((j) => {
             CartProData.map((s) => {
@@ -55,7 +58,8 @@ function CartDetails(props) {
     }
     
     const buyDataFun = () => {
-
+        const Buycart = [];
+       
         productdata.map((j) => {
           
                 if (j.id === props?.location?.state?.id) {
@@ -77,19 +81,37 @@ function CartDetails(props) {
         dispatch(increment(id))
     }
 
+    useEffect(() => {
+        if (props?.location?.state?.search === 'Buy') {
+            login.user !== null ? setPlaceorder(true) : history.push("/login");
+         
+        }
+     }, [props?.location?.state?.search ])
+     
 
-
-    let total;
-    let totalamount = 0;
-
+     let total;
+     let totalbuy;
+     let totalamount = 0;
+    let totalamountbuy = 0;
+    
     cartData.map((g) => {
         total = g.product_price * g.quantity;
         totalamount = totalamount + total;
     })
 
+    Buycartdata.map((g) => {
+        totalbuy = g.product_price * g.quantity;
+        totalamountbuy = totalamountbuy + totalbuy;
+    })
+
+    console.log("Buycartdata" , Buycartdata);
+
 
     const discoutnt = Math.round(totalamount * 0.08);
     const finaltotal = totalamount - discoutnt;
+
+    const discoutntbuy = Math.round(totalamountbuy * 0.08);
+    const finaltotalbuy = totalamountbuy - discoutntbuy;
 
 
     const handledecrement = (id) => {
@@ -98,21 +120,19 @@ function CartDetails(props) {
 
 
     const orderplace = () => {
-        setPlaceorder(true)
-    }
+        
+        login.user !== null ? setPlaceorder(true) : history.push("/login");
+    }   
 
     useEffect(() => {
         dispatch(getProduct());
 
         cartDataFun();
+        buyDataFun();
+
     }, [CartProData])
 
-    useEffect(() => {
-       if (props?.location?.state?.search === 'Buy') {
-        setPlaceorder(true)
-        
-       }
-    }, [props?.location?.state?.search ])
+   
 
     var str = '0123456789';
 
@@ -331,26 +351,31 @@ function CartDetails(props) {
                             }
                         </div>
 
+                  { props?.location?.state?.search === 'Buy' ?
+
                         <div className='col-3 side-total'>
                             <div className='row total-box'>
                                 <h6>PRICE DETAILS</h6>
                             </div>
+                   
+                          
                             <div className='row'>
-                                <p className='main-tit-box'>Price ({cartData.length} items)</p>
-                                <p className='sub-tit-box'>₹{totalamount}</p>
+                                <p className='main-tit-box'>Price ({Buycartdata.length} items)</p>
+                                <p className='sub-tit-box'>₹{totalamountbuy}</p>
                             </div>
                             <div className='row'>
                                 <p className='main-tit-box'>Discount</p>
-                                <p className='sub-tit-box'>- ₹{discoutnt}</p>
+                                <p className='sub-tit-box'>- ₹{discoutntbuy}</p>
                             </div>
 
                             <div className='row final-total'>
                                 <h6>Total Price</h6>
-                                <h6>₹{finaltotal}</h6>
+                                <h6>₹{finaltotalbuy}</h6>
                             </div>
                             <div className='row save-line'>
-                                <p className='save-price'>You will save <span className='save-green'>₹{discoutnt}</span> on this order</p>
+                                <p className='save-price'>You will save <span className='save-green'>₹{discoutntbuy}</span> on this order</p>
                             </div>
+
                             {placeorder ?
                                 <div className='row  place-btn d-none'>
                                     <div className="box Add-button btn-plceorder">
@@ -378,6 +403,57 @@ function CartDetails(props) {
                             }
 
                         </div>
+                        :
+                        <div className='col-3 side-total'>
+                            <div className='row total-box'>
+                                <h6>PRICE DETAILS</h6>
+                            </div>
+                          
+                            <div className='row'>
+                                <p className='main-tit-box'>Price ({cartData.length} items)</p>
+                                <p className='sub-tit-box'>₹{totalamount}</p>
+                            </div>
+                            <div className='row'>
+                                <p className='main-tit-box'>Discount</p>
+                                <p className='sub-tit-box'>- ₹{discoutnt}</p>
+                            </div>
+
+                            <div className='row final-total'>
+                                <h6>Total Price</h6>
+                                <h6>₹{finaltotal}</h6>
+                            </div>
+                            <div className='row save-line'>
+                                <p className='save-price'>You will save <span className='save-green'>₹{discoutnt}</span> on this order</p>
+                            </div>
+
+                            {placeorder ?
+                                <div className='row  place-btn d-none'>
+                                    <div className="box Add-button btn-plceorder">
+                                        <div className="option_container btn-plceorder">
+                                            <div className="options btn-plceorder">
+                                                <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                :
+                                <div className='row  place-btn'>
+                                    <div className="box Add-button btn-plceorder">
+                                        <div className="option_container btn-plceorder">
+                                            <div className="options btn-plceorder">
+                                                <button><a href onClick={orderplace} className="option1"> Place Order</a></button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        }
 
                     </div>
                 </div>

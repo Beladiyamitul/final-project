@@ -4,27 +4,28 @@ import { Redirect, Route } from 'react-router-dom';
 import { IsLogin } from '../utils/Index';
 
 function ClinteRoute({component : Component, restricted=false , ...rest}) {
-    let login = useSelector(state => state.login);
+    const login = useSelector(state => state.login);
+    
 
     return (
         <Route {...rest} render={props => (
 
-            // login.user !== null ?
-            // <>
+            login.user !== null ?
+            <>
            
-            // <Component {...props}/>
-            // </>
-            // :
-            // <>
-            // <Redirect to={"/login"} /> 
-            // </>
+            <Component {...props}/>
+            </>
+            :
+            <>
+            <Redirect to={"/login"} /> 
+            </>
            
         
 
-            IsLogin() && restricted ?
-            <Component {...props}/>
-            :
-            <Redirect to={"/login"} /> 
+            // IsLogin() && restricted ?
+            // <Component {...props}/>
+            // :
+            // <Redirect to={"/login"} /> 
          )}
          
 
