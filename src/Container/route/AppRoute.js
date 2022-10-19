@@ -14,6 +14,7 @@ import Blog_list from '../Blog_list/Blog_list';
 import Login from '../Login/Login';
 import { Route, Switch } from 'react-router-dom';
 import PublicRoute from '../route/PublicRoute';
+import PrivateRoute from './PrivateRoute';
 
 
 function AppRoute(props) {
@@ -24,12 +25,12 @@ function AppRoute(props) {
               <PublicRoute exact path={"/about"} component={About} />
               <PublicRoute exact path={"/testimonial"} component={Testimonial} />
               <PublicRoute exact path={"/products"} component={Product} />
-              <Route exact path={"/product_admin"} component={Product_admin} />
+              <PrivateRoute exact path={"/product_admin"} component={Product_admin} />
               <PublicRoute exact path={"/catagory"} component={Catagory} />
-              <Route exact path={"/vieworder_admin"} component={Vieworeder_admin} />
+              <PrivateRoute exact path={"/vieworder_admin"} component={Vieworeder_admin} />
               <PublicRoute exact path={"/product_detail"} component={ProductDetails} />
               <PublicRoute exact path={"/cart_detail"} component={CartDetails} />
-              <Route exact path={"/Catagories_admin"} component={Catagories_admin} />
+              <PrivateRoute exact path={"/Catagories_admin"} component={Catagories_admin} />
               <PublicRoute exact path={"/blog"} component={Blog_list} />
               <PublicRoute exact path={"/contact"} component={Contact} />
               <PublicRoute exact path={"/login"} restricted={true} component={Login} />

@@ -1,5 +1,7 @@
+import { async } from "@firebase/util";
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail  } from "firebase/auth";
-import { auth } from "../../firebase";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 
 
 
@@ -12,11 +14,24 @@ export const LoginAPI = (data) =>{
 
   return new Promise ((resolve , reject) => {
     signInWithEmailAndPassword(auth , data.email , data.password)
-     .then((user) => {
+     .then( async  (user) => {
+      
           if (user.user.emailVerified) {
-            resolve({ payload: user.user });
+            // resolve({ payload: user.user.uid });
+            const userRef = doc(db, "users" , user.user.uid) ;
+             
+            await updateDoc(userRef,{emailVerified:true});
+
+            const userRefGet = doc(db, "users" , user.user.uid) ;
+            console.log("userRefGet",userRefGet);
+            const userdGet = await getDoc(userRefGet);
+            console.log(userdGet);
+
+            resolve({ payload: {id:userdGet.id , ...userdGet.data()} });
+
+
           } else {
-            reject({ payload: "Please  Verify Your Email" });
+            reject({ payload: "Please  Verify Your Email"});
           }
           console.log(user);
         })
@@ -63,12 +78,21 @@ export const SignupApi = (data) => {
         });
       })
       .then((emailafterverify) => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
           if (user) {
             if (user.emailVerified) {
               resolve({ payload: "Email Successfull" });
             } else {
               resolve({ payload: "Please Enter Verify Email" });
+
+              await setDoc(doc(db, "users", user.uid),{
+                email:data.email,
+                role:"user",
+                emailVerified:user.emailVerified
+              })
+              .then(() => console.log("user Add"))
+              .catch((error) => console.log(error.code))
+
             }
           } else {
             reject({ payload: "somthing went wrong" });

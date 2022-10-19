@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
+import Footer from '../../Component/Footer/Footer';
+import Header from '../../Component/Header/Header';
 import { IsLogin } from '../utils/Index';
 
 function PublicRoute({ component : Component, restricted=false , ...rest}) {
@@ -13,9 +15,17 @@ function PublicRoute({ component : Component, restricted=false , ...rest}) {
 
 
         login.user !== null &&  restricted ?
+        <>
+        <Header />
         <Redirect to={"/"} /> 
+        <Footer/>
+        </>
         :
-            <Component {...props}/>
+        <>
+        <Header />
+        <Component {...props}/>
+        <Footer/>
+        </>
      )}
      
      

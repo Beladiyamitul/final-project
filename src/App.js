@@ -33,7 +33,7 @@ function App() {
       <SnackbarProvider maxSnack={3}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Header />
+            {/* <Header /> */}
             <AppRoute/>
             {/* <Switch>
               <PublicRoute exact path={"/"} component={Home} />
@@ -50,7 +50,7 @@ function App() {
               <PublicRoute exact path={"/contact"} component={Contact} />
               <PublicRoute exact path={"/login"} component={Login} />
             </Switch> */}
-            <Footer />
+            {/* <Footer /> */}
           </PersistGate>
           <ToastContainer
             position="top-right"
