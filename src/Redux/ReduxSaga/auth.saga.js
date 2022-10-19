@@ -11,11 +11,9 @@ function*  signupsaga(action) {
    try {
 
       const user = yield call( SignupApi , action.payload);
-     console.log(user.payload)
       yield put(setAlert({ text: user.payload, color: "success" }))
       // yield put(emailVerify(user));
    } catch (e) {
-      console.log(e.payload)
       yield put(setAlert({ text: e.payload, color: "error" }))
       yield put({ type: "USER_FETCH_FAILED", message: e.message });
    }
@@ -26,12 +24,10 @@ function*  signupsaga(action) {
 function* loginsaga(action) {
    try {
       const user = yield call(LoginAPI  , action.payload);
-      console.log("user.payload",user.payload)
       history.push("/")
       yield put(setAlert({ text: "login Succesess", color: "success" }))
 
       yield put(logedUser(user.payload))
-      console.log(user.payload);
    }
    catch (e) 
    {

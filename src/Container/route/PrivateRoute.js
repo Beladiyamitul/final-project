@@ -8,9 +8,6 @@ import { IsLogin } from '../utils/Index';
 function PrivateRoute({component : Component , ...rest}) {
 
     const login = useSelector(state => state.login);
-
-    console.log(login);
-
     return (
        <Route {...rest} render ={props => (
 

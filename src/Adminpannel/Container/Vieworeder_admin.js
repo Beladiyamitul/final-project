@@ -17,21 +17,9 @@ function Vieworeder_admin(props) {
     const doctors = useSelector(state => state.doctors);
     const vieworder = useSelector(state => state.order);
     const product = useSelector(state => state.product);
-
-
     const catagorydata = doctors.doctor;
     const orderdata = vieworder.order;
     const productdata = product.product;
-
-
-
-
-
-
-
-    console.log(orderdata);
-
-
 
 
     const getData = () => {

@@ -10,7 +10,6 @@ import { auth, db } from "../../firebase";
 // export const SignupApi = (data) =>{
 export const LoginAPI = (data) =>{
 
-  console.log(data);
 
   return new Promise ((resolve , reject) => {
     signInWithEmailAndPassword(auth , data.email , data.password)
@@ -23,9 +22,9 @@ export const LoginAPI = (data) =>{
             await updateDoc(userRef,{emailVerified:true});
 
             const userRefGet = doc(db, "users" , user.user.uid) ;
-            console.log("userRefGet",userRefGet);
+         
             const userdGet = await getDoc(userRefGet);
-            console.log(userdGet);
+          
 
             resolve({ payload: {id:userdGet.id , ...userdGet.data()} });
 
@@ -33,7 +32,7 @@ export const LoginAPI = (data) =>{
           } else {
             reject({ payload: "Please  Verify Your Email"});
           }
-          console.log(user);
+       
         })
      .catch((error) =>{
 
@@ -46,7 +45,7 @@ export const LoginAPI = (data) =>{
           reject({ payload: error });
         }
 
-      console.log(error);
+
      })
 
   })
@@ -57,15 +56,12 @@ export const LoginAPI = (data) =>{
 
 // export const LoginAPI = (data) => {
 export const SignupApi = (data) => {
-  console.log(data);
+
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user);
-
-
         onAuthStateChanged(auth, (user) => {
           if (user) {
 

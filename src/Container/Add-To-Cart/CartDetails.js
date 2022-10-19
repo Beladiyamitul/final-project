@@ -25,8 +25,6 @@ function CartDetails(props) {
 
     const login = useSelector(state => state.login);
 
-console.log("login", login);
-
     const history = useHistory()
 
 
@@ -104,7 +102,6 @@ console.log("login", login);
         totalamountbuy = totalamountbuy + totalbuy;
     })
 
-    console.log("Buycartdata" , Buycartdata);
 
 
     const discoutnt = Math.round(totalamount * 0.08);
@@ -183,7 +180,7 @@ console.log("login", login);
 
     });
 
-    // console.log(cartData);
+  
 
     return (
         <>

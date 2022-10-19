@@ -14,8 +14,6 @@ export const initalstate = {
 
 export const OrderReducer = (state = initalstate, action) => {
 
-    console.log(action.payload , action.type);
-
     switch (action.type) {
       
         case ActionType.GET_ORDER:

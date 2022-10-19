@@ -29,7 +29,7 @@ function ProductDetails(props) {
             search : 'Buy'
             
         }
-        console.log("Buydata" , Buydata);
+    
         history.push("/cart_detail" , Buydata)
     }
 

@@ -11,7 +11,7 @@ const alert = useSelector(state => state.alert)
 
 const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-console.log("alert", alert);
+
 const dispatch = useDispatch()
 
 useEffect(() => {
